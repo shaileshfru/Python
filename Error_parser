@@ -1,0 +1,14 @@
+#file to which errors are written
+my_errors = open("/home/myerrors1.txt", "w")
+
+#file from which errors are read
+my_trace = open("/var/tmp/trace.txt", "r")   
+
+levels = ['WARN','INFO']
+
+for line in my_trace:
+    if any(level in line for level in levels):
+        my_errors.write(line)
+
+my_errors.close()
+my_trace.close()
